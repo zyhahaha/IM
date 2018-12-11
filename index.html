@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/index.css">
+  <script type="text/javascript" src="./js/sdk/json2.js"></script>
+  <!--web im sdk-->
+  <script type="text/javascript" src="./js/sdk/webim.js"></script>
+  <!--TLS web sdk(只用于托管模式，独立模式不用引入)-->
+  <script type="text/javascript" src="https://tls.qcloud.com/libs/api.min.js"></script>
+</head>
+<body>
+  <div class="chat">
+    <div class="header">
+      <h4 class="title">title chat</h4>
+    </div>
+    <!-- content -->
+    <div class="content">
+      <p>test testtesttesttesttesttesttesttesttesttesttesttest</p>
+      <p>6666</p>
+    </div>
+    <div class="input-box">
+      <textarea class="input fl"></textarea>
+      <p class="fr">send</p>
+    </div>
+    <!-- footer -->
+    <!-- <div class="tab-bar">
+      <div class="tab-wrap">
+        <p class="tab-home">
+          <img src="@/assets/home/tab-ico-home-pre.png" alt="">
+          <br/>
+          首页
+        </p>
+        <p>
+          <img src="@/assets/home/tab-ico-community-nor.png" alt="">
+          <br/>
+          社区
+        </p>
+        <p>
+          <img src="@/assets/home/tab-ico-me-nor.png" alt="">
+          <br/>
+          我的
+        </p>
+      </div>
+    </div> -->
+  </div>
+</body>
+<script src="./js/index.js"></script>
+<script>
+  /**
+  * YDUI 可伸缩布局方案
+  * rem计算方式：设计图尺寸px / 100 = 实际rem 【例: 100px = 1rem，32px = .32rem】
+  */
+  !function (window) {
+    /* 设计图文档宽度 */
+    var docWidth = 750;
+
+    var doc = window.document,
+        docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+
+    var recalc = (function refreshRem() {
+        var clientWidth = docEl.getBoundingClientRect().width;
+
+        /* 8.55：小于320px不再缩小，11.2：大于420px不再放大 */
+        docEl.style.fontSize = Math.max(Math.min(20 * (clientWidth / docWidth), 11.2), 8.55) * 5 + 'px';
+
+        return refreshRem;
+    })();
+
+    /* 添加倍屏标识，安卓为1 */
+    docEl.setAttribute('data-dpr', window.navigator.appVersion.match(/iphone/gi) ? window.devicePixelRatio : 1);
+
+    if (/iP(hone|od|ad)/.test(window.navigator.userAgent)) {
+        /* 添加IOS标识 */
+        doc.documentElement.classList.add('ios');
+        /* IOS8以上给html添加hairline样式，以便特殊处理 */
+        if (parseInt(window.navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/)[1], 10) >= 8)
+            doc.documentElement.classList.add('hairline');
+    }
+
+    if (!doc.addEventListener) return;
+    window.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+  }(window);
+</script>
+</html>
